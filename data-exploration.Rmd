@@ -1,6 +1,8 @@
 ---
 title: "data-exploration"
-output: html_document
+output:
+  html_document: default
+  pdf_document: default
 date: "2024-02-23"
 ---
 
@@ -8,17 +10,19 @@ date: "2024-02-23"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# the following exercises are a test in disguise. 
-# what do you think about the coding? 
+```{r problem 1 set up}
+# the following exercises are a test in disguise.
+
+# what do you think about the coding?
+
 # can you think of any improvements to the following?
-```{r problem 1 set up, echo=TRUE}
 rm(list=ls()) # always clean up your environment! 
 # install.packages("tidyverse") #uncomment to install tidyverse if you haven't already
 
 library(tidyverse)
 ```
 
-```{r viewing data, echo=TRUE}
+```{r problem1 viewing data}
 ## PROBLEM 1 ##
 
 # visualizing your data is important!
@@ -26,7 +30,7 @@ library(tidyverse)
 # Lets look at the Anscombe’s Quartet data. There are four different data sets.
 # Anscombe, F. J. (1973). "Graphs in Statistical Analysis". American Statistician. 27 (1): 17–21. doi:10.1080/00031305.1973.10478966. JSTOR 2682899.
 
-anscombe_quartet = readRDS("anscombe_quartet.rds")
+anscombe_quartet = readRDS("../anscombe_quartet.rds")
 
 # let's explore the dataset 
 str(anscombe_quartet)
@@ -35,7 +39,7 @@ str(anscombe_quartet)
 # to display a short version of the structure of the dataset
 ```
 
-```{r summary stats}
+```{r problem1 summary stats}
 # let's check some summary statistics:
 
 tibble1 <- anscombe_quartet %>% 
@@ -86,10 +90,10 @@ ggsave("anscombe_quartet.png", width = 20, height = 20, units = "cm")
 # load in the datasaurus dataset
 rm(list=ls())
 library(tidyverse)
-datasaurus_dozen = readRDS("datasaurus_dozen.rds")
+datasaurus_dozen = readRDS("../datasaurus_dozen.rds")
 ```
 
-```{r viewing data}
+```{r problem2 viewing data}
 # explore the dataset 
 str(datasaurus_dozen) 
 # how many rows and columns does the datasaurus_dozen file have? 
@@ -106,7 +110,7 @@ plot_1 <- ggplot(datasaurus_dozen, aes(x=x,y=y)) +
 plot_1
 ```
 
-```{r summary stats}
+```{r problem2 summary stats}
 # calculate the correlations and summary statistics for x and y in all datasets: 
 tibble2 <- datasaurus_dozen %>% 
   group_by(dataset) %>% 
@@ -135,4 +139,3 @@ ggsave("saurus_dozen.png", width = 20, height = 20, units = "cm")
 # what conclusions can you draw for the plots and summary statistics? 
 # data sets that have similar correlation values could have very different distribution of data points.
 ```
-
